@@ -54,9 +54,8 @@
         </div>
     </div>
     <div class="col-md-2 sideMenu">
-        <a href="#" class="btn btn-primary btn-long">
-            Dodaj do koszyka
-        </a>
+        @Html.ActionLink("Dodaj do koszyka", "AddToCart", "Product", Model, new { @class = "btn btn-primary btn-long" })
+
         <a href="@Url.Action("")" class="btn btn-default btn-long">
             Powrót
         </a>

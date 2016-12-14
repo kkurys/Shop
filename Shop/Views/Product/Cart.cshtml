@@ -1,0 +1,8 @@
+﻿<ul>
+    @foreach (var item in Model.Products)
+    {
+        <li>@item.Name @item.ActualPrice</li>
+    }
+    <li>@Model.Total</li>
+</ul>
+
