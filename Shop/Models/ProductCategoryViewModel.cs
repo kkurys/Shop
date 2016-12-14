@@ -9,5 +9,6 @@ namespace Shop.Models
     {
         public IList<Product> Product { get; set; }
         public IList<Category> Category { get; set; }
+        public string CurrentCategory { get; set; }
     }
 }

@@ -25,6 +25,18 @@ namespace Shop.Controllers
             return View(viewModel);
         }
 
+        [HttpGet]
+        public ActionResult Index(string category)
+        {
+            var viewModel = new ProductCategoryViewModel();
+
+            viewModel.Product = db.Products.ToList();
+            viewModel.Category = db.Categories.ToList();
+            viewModel.MenuCategories = allCats.getAllCategories(db);
+            viewModel.CurrentCategory = category;
+            return View(viewModel);
+        }
+
         // GET: Product/Details/5
         public ActionResult Details(int id)
         {

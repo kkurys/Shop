@@ -4,12 +4,12 @@
     ViewBag.Title = "Index";
 }
 
-<h2>Laptopy > Notebooki</h2>
-<div class="container">
-    <div class="row">
-        @foreach (var item in Model.Product)
-        {
-            if (item.Category.Name == "Notebooki")
+@if (Model.CurrentCategory == null)
+{
+    <h2>Produkty</h2>
+    <div class="container">
+        <div class="row">
+            @foreach (var item in Model.Product)
             {
                 <div class="col-sm-4 col-lg-4 col-md-4">
                     <div class="thumbnail" style="margin-bottom: 20px;">
@@ -24,6 +24,35 @@
                     </div>
                 </div>
             }
-        }
+        </div>
     </div>
-</div>
+}
+else
+{
+    <h2>@Model.CurrentCategory</h2>
+    <div class="container">
+        <div class="row">
+            @foreach (var item in Model.Product)
+            {
+                if (item.Category.Name == Model.CurrentCategory)
+                {
+                    <div class="col-sm-4 col-lg-4 col-md-4">
+                        <div class="thumbnail" style="margin-bottom: 20px;">
+                            <img src="http://placehold.it/320x150" alt="">
+                            <div class="caption">
+                                <h4 class="pull-right">@item.ActualPrice</h4>
+                                <h4>
+                                    <a href="@Url.Action("Details", "Product", new { id = item.ProductID })">@item.Manufacturer.Name @item.Name</a>
+                                </h4>
+                                <p>@item.ShortDescription</p>
+                            </div>
+                        </div>
+                    </div>
+                }
+            }
+        </div>
+    </div>
+}
+
+
+

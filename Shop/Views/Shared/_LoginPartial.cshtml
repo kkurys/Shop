@@ -38,14 +38,14 @@ else
     <ul class="nav navbar-nav navbar-right">
         <li>
             <div class="pull-right">
-                <div>
-                    <a href="#">
+                <a href="@Url.Action("Login", "Account")" class="clear-link">
+                    <div class="full-length" style="text-align: center">
                         <span class="glyphicon glyphicon-white glyphicon-shopping-cart" aria-hidden="true"></span>
-                    </a>
-                </div>
-                <div>
-                    <span>Koszyk</span>
-                </div>
+                    </div>
+                    <div>
+                        <span>Twój koszyk</span>
+                    </div>
+                </a>
             </div>
         </li>
         <li>@Html.ActionLink("Register", "Register", "Account", routeValues: null, htmlAttributes: new { id = "registerLink" })</li>

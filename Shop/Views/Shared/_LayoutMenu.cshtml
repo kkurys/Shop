@@ -18,7 +18,7 @@
                     <ul class="dropdown-menu">
                         @foreach (var subcategory in category.Subcategories)
                         {
-                            <li><a href="#">@subcategory.Name</a></li>
+                            <li><a href="@Url.Action("Index", "Product", new { category = @subcategory.Name })">@subcategory.Name</a></li>
                         }
                     </ul>
                 </div>
