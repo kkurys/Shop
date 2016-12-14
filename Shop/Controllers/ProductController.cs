@@ -1,11 +1,9 @@
 ﻿using Shop.Models;
-using System;
 using System.Collections.Generic;
-using System.Linq;
-using System.Web;
-using System.Web.Mvc;
 using System.Data.Entity;
+using System.Linq;
 using System.Net;
+using System.Web.Mvc;
 
 namespace Shop.Controllers
 {
@@ -13,7 +11,6 @@ namespace Shop.Controllers
     {
         private ApplicationDbContext db = new ApplicationDbContext();
         private CategoryWithSubcategories allCats = new CategoryWithSubcategories();
-
         // GET: Product
         public ActionResult Index()
         {
@@ -171,6 +168,28 @@ namespace Shop.Controllers
                 db.Dispose();
             }
             base.Dispose(disposing);
+        }
+
+        public ActionResult AddToCart(Product product)
+        {
+            if (Session["cart"] == null)
+            {
+                var cart = new List<Product>();
+                cart.Add(product);
+                Session["cart"] = cart;
+            }
+            else
+            {
+                List<Product> cart = Session["cart"] as List<Product>;
+                cart.Add(product);
+            }
+            return RedirectToAction("Details", new { id = product.ProductID });
+        }
+        public ActionResult Cart()
+        {
+            var viewModel = new CartViewModel(Session["cart"] as List<Product>);
+            viewModel.MenuCategories = allCats.getAllCategories(db);
+            return View(viewModel);
         }
     }
 }

@@ -210,6 +210,7 @@
     </Compile>
     <Compile Include="Models\AccountViewModels.cs" />
     <Compile Include="Models\BaseViewModel.cs" />
+    <Compile Include="Models\CartViewModel.cs" />
     <Compile Include="Models\Category.cs" />
     <Compile Include="Models\CategoryWithSubcategories.cs" />
     <Compile Include="Models\Copy.cs" />
@@ -292,7 +293,41 @@
     <Content Include="Views\Product\Index.cshtml" />
     <Content Include="Views\Product\_ViewStart.cshtml" />
     <Content Include="Views\Shared\_LayoutEmpty.cshtml" />
-    <Content Include="Views\Home\_ViewStart.cshtml" />
+    <Content Include="Views\Index.cshtml" />
+    <Content Include="Views\Admin\Category\Category.cshtml" />
+    <Content Include="Views\Admin\Category\Create.cshtml" />
+    <Content Include="Views\Admin\Category\Delete.cshtml" />
+    <Content Include="Views\Admin\Category\Details.cshtml" />
+    <Content Include="Views\Admin\Category\Edit.cshtml" />
+    <Content Include="Views\Admin\Category\Index.cshtml" />
+    <Content Include="Views\Admin\Employee\Create.cshtml" />
+    <Content Include="Views\Admin\Employee\Delete.cshtml" />
+    <Content Include="Views\Admin\Employee\Details.cshtml" />
+    <Content Include="Views\Admin\Employee\Edit.cshtml" />
+    <Content Include="Views\Admin\Employee\Index.cshtml" />
+    <Content Include="Views\Admin\Index.cshtml" />
+    <Content Include="Views\Admin\Manufacturer\Create.cshtml" />
+    <Content Include="Views\Admin\Manufacturer\Delete.cshtml" />
+    <Content Include="Views\Admin\Manufacturer\Details.cshtml" />
+    <Content Include="Views\Admin\Manufacturer\Edit.cshtml" />
+    <Content Include="Views\Admin\Manufacturer\Index.cshtml" />
+    <Content Include="Views\Admin\News\Create.cshtml" />
+    <Content Include="Views\Admin\News\Delete.cshtml" />
+    <Content Include="Views\Admin\News\Details.cshtml" />
+    <Content Include="Views\Admin\News\Edit.cshtml" />
+    <Content Include="Views\Admin\News\Index.cshtml" />
+    <Content Include="Views\Admin\Product\Create.cshtml" />
+    <Content Include="Views\Admin\Product\Delete.cshtml" />
+    <Content Include="Views\Admin\Product\Details.cshtml" />
+    <Content Include="Views\Admin\Product\Edit.cshtml" />
+    <Content Include="Views\Admin\Product\Index.cshtml" />
+    <Content Include="Views\Admin\ShopLocation\Create.cshtml" />
+    <Content Include="Views\Admin\ShopLocation\Delete.cshtml" />
+    <Content Include="Views\Admin\ShopLocation\Details.cshtml" />
+    <Content Include="Views\Admin\ShopLocation\Edit.cshtml" />
+    <Content Include="Views\Admin\ShopLocation\Index.cshtml" />
+    <Content Include="Views\Admin\_AdminLayout.cshtml" />
+    <Content Include="Views\Product\Cart.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

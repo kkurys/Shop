@@ -29,7 +29,7 @@ namespace Shop.Controllers
         }
         public ActionResult Product()
         {
-            return RedirectToAction("Index", "Product");
+            return RedirectToAction("AdminIndex", "Product");
         }
         public ActionResult Manufacturer()
         {
