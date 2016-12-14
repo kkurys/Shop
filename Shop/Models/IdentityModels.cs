@@ -4,6 +4,7 @@ using System.Collections.Generic;
 using System.Data.Entity;
 using System.Security.Claims;
 using System.Threading.Tasks;
+using System.Collections;
 
 namespace Shop.Models
 {
@@ -42,6 +43,9 @@ namespace Shop.Models
         public DbSet<Manufacturer> Manufacturers { get; set; }
         public DbSet<Invoice> Invoices { get; set; }
         public DbSet<ProductImage> ProductImages { get; set; }
+        public DbSet<Order> Orders { get; set; }
+        public DbSet<Copy> Copies { get; set; }
+        public IEnumerable ApplicationUsers { get; internal set; }
     }
     public class IdentityManager
     {

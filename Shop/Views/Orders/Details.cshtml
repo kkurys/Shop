@@ -1,0 +1,56 @@
+﻿@using Microsoft.AspNet.Identity;
+@model Shop.Models.Order
+
+@{
+    ViewBag.Title = "Details";
+}
+
+@if (Model.UserID == User.Identity.GetUserId())
+{
+    <h2>Details</h2>
+
+    <div>
+        <h4>Order</h4>
+        <hr />
+        <dl class="dl-horizontal">
+            <dt>
+                @Html.DisplayNameFor(model => model.User.Email)
+            </dt>
+
+            <dd>
+                @Html.DisplayFor(model => model.User.Email)
+            </dd>
+
+            <dt>
+                @Html.DisplayNameFor(model => model.Date)
+            </dt>
+
+            <dd>
+                @Html.DisplayFor(model => model.Date)
+            </dd>
+
+        </dl>
+        @if (Model.WasPaid == false)
+        {
+            <div class="alert alert-danger" role="alert">
+                <a href="#" class="alert-link">Nie zapłacono</a>
+            </div>
+        }
+        else
+        {
+            <div class="alert alert-success" role="alert">
+                <a href="#" class="alert-link">Zapłacono</a>
+            </div>
+        }
+    </div>
+    <p>
+        <a href="@Url.Action("Index", "Orders")" class="btn btn-primary">Powrót</a>
+    </p>
+}
+else
+{
+    <div class="alert alert-danger" role="alert">
+        <a href="#" class="alert-link">Brak dostępu do tego zamówienia.</a>
+    </div>
+    <a href="@Url.Action("Index", "Orders")" class="btn btn-primary">Zamówienia</a>
+}

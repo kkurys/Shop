@@ -1,8 +1,20 @@
-﻿<ul>
-    @foreach (var item in Model.Products)
-    {
-        <li>@item.Name @item.ActualPrice</li>
-    }
-    <li>@Model.Total</li>
-</ul>
-
+﻿
+<h3>Twój koszyk</h3>
+<div class="row">
+    <div class="col-md-6">
+        <ul class="list-group">
+            @foreach (var item in Model.Products)
+            {
+                <li class="list-group-item">
+                    <span class="badge">@item.ActualPrice</span>
+                    @item.Name
+                </li>
+            }
+            <li class="list-group-item">
+                <span class="badge">@Model.Total</span>
+                <b>RAZEM</b>
+            </li>
+        </ul>
+        <a href="@Url.Action("AddOrder")" class="btn btn-primary pull-right">Kupuję</a>
+    </div>
+</div>

@@ -1,4 +1,5 @@
 ﻿using Shop.Models;
+using System;
 using System.Collections.Generic;
 using System.Data.Entity;
 using System.Linq;
@@ -38,6 +39,14 @@ namespace Shop.Controllers
         public ActionResult Details(int id)
         {
             var viewModel = db.Products.Find(id);
+            int i = 0;
+            foreach (var item in db.Copies)
+            {
+                if (item.ProductID == viewModel.ProductID)
+                {
+                    i++;
+                }
+            }
             viewModel.MenuCategories = allCats.getAllCategories(db);
 
             return View(viewModel);
@@ -190,6 +199,16 @@ namespace Shop.Controllers
             var viewModel = new CartViewModel(Session["cart"] as List<Product>);
             viewModel.MenuCategories = allCats.getAllCategories(db);
             return View(viewModel);
+        }
+        
+        public ActionResult AddOrder()
+        {
+            var o = new Order();
+            o.Date = DateTime.Now;
+            o.WasPaid = false;
+            o.UserID = "1";
+
+            return RedirectToAction("Create", "Orders", new { products = Session["cart"] as List<Product> });
         }
     }
 }

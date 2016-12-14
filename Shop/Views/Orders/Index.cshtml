@@ -1,0 +1,43 @@
+﻿@using Microsoft.AspNet.Identity
+@model IEnumerable<Shop.Models.Order>
+
+@{
+    ViewBag.Title = "Index";
+}
+
+<h2>Index</h2>
+<table class="table">
+    <tr>
+        <th>
+            @Html.DisplayNameFor(model => model.User.Email)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Date)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.WasPaid)
+        </th>
+        <th></th>
+    </tr>
+
+@foreach (var item in Model) {
+    <tr>
+        @if (item.UserID == User.Identity.GetUserId())
+        {
+            <td>
+                @Html.DisplayFor(modelItem => item.User.Email)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Date)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.WasPaid)
+            </td>
+            <td>
+                @Html.ActionLink("Details", "Details", new { id = item.OrderID })
+            </td>
+        }
+    </tr>
+}
+
+</table>
