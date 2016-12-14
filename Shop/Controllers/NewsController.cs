@@ -2,6 +2,7 @@
 using System.Data.Entity;
 using System.Linq;
 using System.Net;
+using System.Web;
 using System.Web.Mvc;
 
 namespace Shop.Controllers
@@ -45,10 +46,16 @@ namespace Shop.Controllers
         // more details see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Create([Bind(Include = "NewsID,Title,Content,ImgFilename,CreationDate,EmployeeID")] News news)
+        public ActionResult Create([Bind(Include = "NewsID,Title,Content,ImgFilename,CreationDate,EmployeeID")] News news, HttpPostedFileBase file)
         {
             if (ModelState.IsValid)
             {
+                if (file != null)
+                {
+                    file.SaveAs(HttpContext.Server.MapPath("~/Content/Images/News/")
+                                      + file.FileName);
+                    news.ImgFilename = "~/Content/Images/News/" + file.FileName;
+                }
                 db.News.Add(news);
                 db.SaveChanges();
                 return RedirectToAction("Index");

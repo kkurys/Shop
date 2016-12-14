@@ -1,10 +1,10 @@
 ﻿@{
     ViewBag.Title = "Home Page";
 }
-
+@model  Shop.Models.HomeViewModel
 <div class="jumbotron jumbotron-transparent">
     <ul>
-        @if (Model.News.Count == 0)
+        @if (Model.News.Count() == 0)
         {
             <b>Brak wiadomosci!</b>
         }
@@ -18,6 +18,13 @@
                     </div>
                     <div class="panel-body">
                         <b>@item.Content</b>
+                    </div>
+                    <div>
+                        @if (@item.ImgFilename != null)
+                        {
+                            <img src="@Url.Content(@item.ImgFilename)" alt="img" />
+                        }
+
                     </div>
                 </li>
             }

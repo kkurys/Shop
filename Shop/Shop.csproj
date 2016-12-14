@@ -233,6 +233,19 @@
   <ItemGroup>
     <Content Include="Content\bootstrap.css" />
     <Content Include="Content\bootstrap.min.css" />
+    <Content Include="Content\Images\ads.jpg" />
+    <Content Include="Content\Images\ads.png" />
+    <Content Include="Content\Images\clock.png" />
+    <Content Include="Content\Images\dolar.png" />
+    <Content Include="Content\Images\handover.png" />
+    <Content Include="Content\Images\hot-shot-small,,hs_2016_5_10_8_24_34.png" />
+    <Content Include="Content\Images\info.png" />
+    <Content Include="Content\Images\logo-hyker.jpg" />
+    <Content Include="Content\Images\News\14642062_1122287547821189_2623385324353821779_n.jpg" />
+    <Content Include="Content\Images\product-small,acer-e5-573-i3-4005u8gb500win8-291212,pr_2016_3_11_12_39_37_388.png" />
+    <Content Include="Content\Images\product-small,asus-ve248hr-czarny-275824,pr_2016_4_28_11_45_20_696.jpg" />
+    <Content Include="Content\Images\product-small,lenovo-moto-g-16gb-3rd-gen-lte-czarny-265393,pr_2015_10_21_10_17_57_101.jpg" />
+    <Content Include="Content\Images\tick.png" />
     <Content Include="favicon.ico" />
     <Content Include="fonts\glyphicons-halflings-regular.svg" />
     <Content Include="Global.asax" />
@@ -331,6 +344,7 @@
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
+    <Folder Include="Content\Images\Products\" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="fonts\glyphicons-halflings-regular.woff" />
