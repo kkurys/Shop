@@ -1,0 +1,59 @@
+﻿@model Shop.Models.News
+
+@{
+    ViewBag.Title = "Details";
+    Layout = "~/Views/Admin/_AdminLayout.cshtml";
+}
+
+<h2>Szczegóły aktualności</h2>
+
+<div>
+    <h4>News</h4>
+    <hr />
+    <dl class="dl-horizontal">
+        <dt>
+            @Html.DisplayNameFor(model => model.Employee.UserID)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Employee.UserID)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Title)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Title)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Content)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Content)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.ImgFilename)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.ImgFilename)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.CreationDate)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.CreationDate)
+        </dd>
+
+    </dl>
+</div>
+<p>
+    @Html.ActionLink("Edit", "Edit", new { id = Model.NewsID }) |
+    @Html.ActionLink("Back to List", "Index")
+</p>

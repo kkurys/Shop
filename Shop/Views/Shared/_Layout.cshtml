@@ -1,4 +1,5 @@
-﻿<!DOCTYPE html>
+﻿
+<!DOCTYPE html>
 <html>
 <head>
     <meta charset="utf-8" />
@@ -7,6 +8,7 @@
     @Styles.Render("~/Content/css")
     @Scripts.Render("~/bundles/modernizr")
 
+    <meta name="description" content="The description of my page" />
 </head>
 <body>
     <div class="navbar navbar-inverse navbar-fixed-top">
@@ -17,21 +19,47 @@
                     <span class="icon-bar"></span>
                     <span class="icon-bar"></span>
                 </button>
-                @Html.ActionLink("Application name", "Index", "Home", new { area = "" }, new { @class = "navbar-brand" })
+                @Html.ActionLink("MOKK", "Index", "Home", new { area = "" }, new { @class = "navbar-brand" })
             </div>
             <div class="navbar-collapse collapse">
                 <ul class="nav navbar-nav">
-                    <li>@Html.ActionLink("Home", "Index", "Home")</li>
-                    <li>@Html.ActionLink("About", "About", "Home")</li>
-                    <li>@Html.ActionLink("Contact", "Contact", "Home")</li>
+                    @*<li>@Html.ActionLink("Home", "Index", "Home")</li>*@
+                    <li>@Html.ActionLink("O nas", "About", "Home")</li>
+                    <li>@Html.ActionLink("Kontakt", "Contact", "Home")</li>
                 </ul>
                 @Html.Partial("_LoginPartial")
             </div>
         </div>
     </div>
+
+    <div class="btn-group mainMenu" role="group" aria-label="...">
+        @foreach (var category in Model.MenuCategories)
+        {
+            if (category.Subcategories.Count == 0)
+            {
+                <a href="#" type="button" class="btn btn-default">@category.Category.Name</a>
+            }
+            else
+            {
+                <div class="btn-group" role="group">
+                    <button type="button" class="btn btn-default btn-full dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">@category.Category.Name</button>
+
+                    <ul class="dropdown-menu">
+                        @foreach (var subcategory in category.Subcategories)
+                        {
+                            <li><a href="#">@subcategory.Name</a></li>
+                        }
+                    </ul>
+                </div>
+            }
+        }
+    </div>
+
     <div class="container body-content">
-        @RenderBody()
-        <hr />
+        <div class="row">
+            @RenderBody()
+            <hr />
+        </div>
         <footer>
             <p>&copy; @DateTime.Now.Year - My ASP.NET Application</p>
         </footer>
@@ -41,4 +69,7 @@
     @Scripts.Render("~/bundles/bootstrap")
     @RenderSection("scripts", required: false)
 </body>
+
+
+
 </html>
