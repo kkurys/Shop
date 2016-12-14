@@ -1,0 +1,30 @@
+﻿@{
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+@section menu{
+    <div class="btn-group mainMenu" role="group" aria-label="...">
+        @foreach (var category in Model.MenuCategories)
+        {
+            if (category.Subcategories.Count == 0)
+            {
+                <a href="#" type="button" class="btn btn-default">@category.Category.Name</a>
+            }
+            else
+            {
+                <div class="btn-group" role="group">
+                    <button type="button" class="btn btn-default btn-full dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">@category.Category.Name</button>
+
+                    <ul class="dropdown-menu">
+                        @foreach (var subcategory in category.Subcategories)
+                        {
+                            <li><a href="#">@subcategory.Name</a></li>
+                        }
+                    </ul>
+                </div>
+            }
+        }
+    </div>
+}
+
+@RenderBody()
