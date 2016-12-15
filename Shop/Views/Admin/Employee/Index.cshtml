@@ -5,25 +5,10 @@
     Layout = "~/Views/Admin/_AdminLayout.cshtml";
 }
 
-<h2>Index</h2>
+<h2>Pracownicy</h2>
 
-<p>
-    @Html.ActionLink("Create New", "Create")
-</p>
 <table class="table">
     <tr>
-        <th>
-            @Html.DisplayNameFor(model => model.User.Email)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.HireDate)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.TypeOfContract)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.Salary)
-        </th>
         <th>
             @Html.DisplayNameFor(model => model.Name)
         </th>
@@ -42,18 +27,6 @@
 @foreach (var item in Model) {
     <tr>
         <td>
-            @Html.DisplayFor(modelItem => item.User.Email)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.HireDate)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.TypeOfContract)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.Salary)
-        </td>
-        <td>
             @Html.DisplayFor(modelItem => item.Name)
         </td>
         <td>
@@ -66,11 +39,19 @@
             @Html.DisplayFor(modelItem => item.LocationID)
         </td>
         <td>
-            @Html.ActionLink("Edit", "Edit", new { id=item.EmployeeID }) |
-            @Html.ActionLink("Details", "Details", new { id=item.EmployeeID }) |
-            @Html.ActionLink("Delete", "Delete", new { id=item.EmployeeID })
+            @Html.ActionLink("Zmień", "Edit", new { id=item.EmployeeID }) |
+            @Html.ActionLink("Szczegóły", "Details", new { id=item.EmployeeID }) |
+            @Html.ActionLink("Usuń", "Delete", new { id=item.EmployeeID })
         </td>
     </tr>
 }
-
+    <tr>
+        <td></td>
+        <td></td>
+        <td></td>
+        <td></td>
+        <td>
+            @Html.ActionLink("Dodaj nowego", "Create")
+        </td>
+    </tr>
 </table>

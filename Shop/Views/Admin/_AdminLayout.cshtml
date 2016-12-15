@@ -2,17 +2,24 @@
     Layout = "~/Views/Shared/_Layout.cshtml";
 }
 @section menu{}
-<div class="col-md-3">
-    <div class="list-group">
-        @Html.ActionLink("Aktualności", "News", "Admin", routeValues: null, htmlAttributes: new { @class = "list-group-item" })
-        @Html.ActionLink("Kategorie produktów", "Category", "Admin", routeValues: null, htmlAttributes: new { @class = "list-group-item" })
-        @Html.ActionLink("Pracownicy", "Employee", "Admin", routeValues: null, htmlAttributes: new { @class = "list-group-item" })
-        @Html.ActionLink("Producenci", "Manufacturer", "Admin", routeValues: null, htmlAttributes: new { @class = "list-group-item" })
-        @Html.ActionLink("Produkty", "Product", "Admin", routeValues: null, htmlAttributes: new { @class = "list-group-item" })
-        @Html.ActionLink("Sklepy", "ShopLocation", "Admin", routeValues: null, htmlAttributes: new { @class = "list-group-item" })
+@if (User.IsInRole("Admin"))
+{
+    <div class="col-md-3">
+        <div class="list-group">
+            @Html.ActionLink("Aktualności", "News", "Admin", routeValues: null, htmlAttributes: new { @class = "list-group-item" })
+            @Html.ActionLink("Kategorie produktów", "Category", "Admin", routeValues: null, htmlAttributes: new { @class = "list-group-item" })
+            @Html.ActionLink("Producenci", "Manufacturer", "Admin", routeValues: null, htmlAttributes: new { @class = "list-group-item" })
+            @Html.ActionLink("Produkty", "Product", "Admin", routeValues: null, htmlAttributes: new { @class = "list-group-item" })
+            @if (User.IsInRole("Admin"))
+            {
+                @Html.ActionLink("Pracownicy", "Employee", "Admin", routeValues: null, htmlAttributes: new { @class = "list-group-item" })
+                @Html.ActionLink("Sklepy", "ShopLocation", "Admin", routeValues: null, htmlAttributes: new { @class = "list-group-item" })
+            }
 
+        </div>
     </div>
-</div>
+}
+
 
 <div class="col-md-9">
     @RenderBody()

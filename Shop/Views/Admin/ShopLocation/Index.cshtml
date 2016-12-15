@@ -5,25 +5,10 @@
     Layout = "~/Views/Admin/_AdminLayout.cshtml";
 }
 
-<h2>Index</h2>
+<h2>Sklepy</h2>
 
-<p>
-    @Html.ActionLink("Create New", "Create")
-</p>
 <table class="table">
     <tr>
-        <th>
-            @Html.DisplayNameFor(model => model.OpeningHour)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.ClosingHour)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.Phone)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.EMail)
-        </th>
         <th>
             @Html.DisplayNameFor(model => model.City)
         </th>
@@ -39,18 +24,6 @@
 @foreach (var item in Model) {
     <tr>
         <td>
-            @Html.DisplayFor(modelItem => item.OpeningHour)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.ClosingHour)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.Phone)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.EMail)
-        </td>
-        <td>
             @Html.DisplayFor(modelItem => item.City)
         </td>
         <td>
@@ -60,11 +33,18 @@
             @Html.DisplayFor(modelItem => item.PostalCode)
         </td>
         <td>
-            @Html.ActionLink("Edit", "Edit", new { id=item.ShopLocationID }) |
-            @Html.ActionLink("Details", "Details", new { id=item.ShopLocationID }) |
-            @Html.ActionLink("Delete", "Delete", new { id=item.ShopLocationID })
+            @Html.ActionLink("Edytuj", "Edit", new { id=item.ShopLocationID }) |
+            @Html.ActionLink("Szczegóły", "Details", new { id=item.ShopLocationID }) |
+            @Html.ActionLink("Usuń", "Delete", new { id=item.ShopLocationID })
         </td>
     </tr>
 }
-
+    <tr>
+        <td></td>
+        <td></td>
+        <td></td>
+        <td>
+            @Html.ActionLink("Dodaj nowy", "Create")
+        </td>
+    </tr>
 </table>

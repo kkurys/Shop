@@ -29,13 +29,13 @@ namespace Shop.Controllers
             {
                 return HttpNotFound();
             }
-            return View("~/Views/Admin/ShopLocation/Index.cshtml", shopLocation);
+            return View("~/Views/Admin/ShopLocation/Details.cshtml", shopLocation);
         }
 
         // GET: ShopLocations/Create
         public ActionResult Create()
         {
-            return View("~/Views/Admin/ShopLocation/Index.cshtml");
+            return View("~/Views/Admin/ShopLocation/Create.cshtml");
         }
 
         // POST: ShopLocations/Create
@@ -67,7 +67,7 @@ namespace Shop.Controllers
             {
                 return HttpNotFound();
             }
-            return View("~/Views/Admin/ShopLocation/Index.cshtml", shopLocation);
+            return View("~/Views/Admin/ShopLocation/Edit.cshtml", shopLocation);
         }
 
         // POST: ShopLocations/Edit/5
@@ -98,7 +98,7 @@ namespace Shop.Controllers
             {
                 return HttpNotFound();
             }
-            return View("~/Views/Admin/ShopLocation/Index.cshtml", shopLocation);
+            return View("~/Views/Admin/ShopLocation/Delete.cshtml", shopLocation);
         }
 
         // POST: ShopLocations/Delete/5

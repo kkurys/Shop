@@ -5,11 +5,9 @@
     Layout = "~/Views/Admin/_AdminLayout.cshtml";
 }
 
-<h2>Index</h2>
+<h2>Producenci</h2>
 
-<p>
-    @Html.ActionLink("Create New", "Create")
-</p>
+
 <table class="table">
     <tr>
         <th>
@@ -30,11 +28,17 @@
             @Html.DisplayFor(modelItem => item.Code)
         </td>
         <td>
-            @Html.ActionLink("Edit", "Edit", new { id=item.ManufacturerID }) |
-            @Html.ActionLink("Details", "Details", new { id=item.ManufacturerID }) |
-            @Html.ActionLink("Delete", "Delete", new { id=item.ManufacturerID })
+            @Html.ActionLink("Edytuj", "Edit", new { id=item.ManufacturerID }) |
+            @Html.ActionLink("Szczegóły", "Details", new { id=item.ManufacturerID }) |
+            @Html.ActionLink("Usuń", "Delete", new { id=item.ManufacturerID })
         </td>
     </tr>
 }
-
+    <tr>
+        <td></td>
+        <td></td>
+        <td>
+            @Html.ActionLink("Dodaj nowego", "Create")
+        </td>
+    </tr>
 </table>

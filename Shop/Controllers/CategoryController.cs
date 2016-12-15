@@ -1,4 +1,5 @@
 ﻿using Shop.Models;
+using System.Collections.Generic;
 using System.Data.Entity;
 using System.Linq;
 using System.Net;
@@ -36,9 +37,14 @@ namespace Shop.Controllers
         // GET: Category/Create
         public ActionResult Create()
         {
-            ViewBag.BaseCategoryID = new SelectList(db.Categories, "CategoryID", "Name");
+            var _categoriesToDisplay = new List<Category>(db.Categories);
+
+            _categoriesToDisplay.Insert(0, new Category() { Name = "", CategoryID = -1 });
+
+            ViewBag.BaseCategoryID = new SelectList(_categoriesToDisplay, "CategoryID", "Name");
             return View("~/Views/Admin/Category/Create.cshtml");
         }
+
 
         // POST: Category/Create
         // To protect from overposting attacks, please enable the specific properties you want to bind to, for 
@@ -49,6 +55,10 @@ namespace Shop.Controllers
         {
             if (ModelState.IsValid)
             {
+                if (category.BaseCategoryID == -1)
+                {
+                    category.BaseCategoryID = null;
+                }
                 db.Categories.Add(category);
                 db.SaveChanges();
                 return RedirectToAction("Index");
@@ -58,7 +68,6 @@ namespace Shop.Controllers
             return View("~/Views/Admin/Category/Create.cshtml", category);
         }
 
-        // GET: Category/Edit/5
         public ActionResult Edit(int? id)
         {
             if (id == null)
@@ -74,9 +83,6 @@ namespace Shop.Controllers
             return View("~/Views/Admin/Category/Edit.cshtml", category);
         }
 
-        // POST: Category/Edit/5
-        // To protect from overposting attacks, please enable the specific properties you want to bind to, for 
-        // more details see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
         public ActionResult Edit([Bind(Include = "CategoryID,Name,BaseCategoryID")] Category category)
