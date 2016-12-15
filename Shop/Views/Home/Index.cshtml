@@ -3,26 +3,34 @@
 }
 
 <div class="jumbotron jumbotron-transparent">
-    <ul>
-        @if (Model.News.Count == 0)
-        {
-            <b>Brak wiadomosci!</b>
-        }
-        else
-        {
-            foreach (var item in Model.News)
-            {
+    @if (Model.News.Count == 0)
+    {
+        <div class="alert alert-danger" role="alert">Brak wiadomosci!</div>
+
+    }
+    else
+    {
+        <ul class="simple-list">
+            @foreach (var item in Model.News)
+                {
                 <li>
-                    <div class="panel panel-info">
-                        <b>@item.Title</b>
+                    <div class="row news-row">
+                        <div class="col-sm-4">
+                            <a href="#" class=""><img src="http://placehold.it/1280X720" class="img-responsive"></a>
+                        </div>
+                        <div class="col-sm-8">
+                            <h3 class="title">@item.Title</h3>
+                            <p>@item.Content</p>
+
+                            <p class="text-muted">@item.CreationDate</p>
+
+                        </div>
                     </div>
-                    <div class="panel-body">
-                        <b>@item.Content</b>
-                    </div>
+                    <hr />
                 </li>
             }
-        }
+        </ul>
+    }
 
-    </ul>
 
 </div>

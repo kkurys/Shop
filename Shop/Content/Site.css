@@ -93,3 +93,20 @@ textarea {
 .dropdown-menu li a:hover{
     background-color: #5e5e5e;
 }
+
+.simple-list{
+    list-style: none;
+
+}
+
+.news-row{
+    padding: 10px;
+    background-color: #eef8ff;
+    border-radius: 5px;
+
+}
+
+.jumbotron-transparent{
+    background-color: transparent;
+
+}
