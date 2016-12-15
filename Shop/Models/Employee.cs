@@ -8,6 +8,7 @@ namespace Shop.Models
     public class Employee
     {
         public int EmployeeID { get; set; }
+        [Display(Name = "Pracownik")]
         public string UserID { get; set; }
         [Display(Name = "Data zatrudnienia")]
         public DateTime HireDate { get; set; }
@@ -23,7 +24,6 @@ namespace Shop.Models
         public string Phone { get; set; }
         [Display(Name = "Sklep")]
         public int LocationID { get; set; }
-
         public virtual ApplicationUser User { get; set; }
         public virtual ShopLocation Location { get; set; }
         public virtual ICollection<News> News { get; set; }

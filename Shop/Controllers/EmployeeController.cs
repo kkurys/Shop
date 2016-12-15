@@ -37,6 +37,7 @@ namespace Shop.Controllers
         public ActionResult Create()
         {
             ViewBag.UserID = new SelectList(db.Users, "Id", "Email");
+            ViewBag.ShopLocationID = new SelectList(db.Locations, "ShopLocationID", "Name");
             return View("~/Views/Admin/Employee/Create.cshtml");
         }
 
@@ -55,6 +56,7 @@ namespace Shop.Controllers
             }
 
             ViewBag.UserID = new SelectList(db.Users, "Id", "Email", employee.UserID);
+            ViewBag.LocationID = new SelectList(db.Locations, "ShopLocationID", "Name");
             return View("~/Views/Admin/Employee/Create.cshtml", employee);
         }
 
@@ -71,6 +73,7 @@ namespace Shop.Controllers
                 return HttpNotFound();
             }
             ViewBag.UserID = new SelectList(db.Users, "Id", "Email", employee.UserID);
+            ViewBag.LocationID = new SelectList(db.Locations, "ShopLocationID", "Name");
             return View("~/Views/Admin/Employee/Edit.cshtml", employee);
         }
 
@@ -84,10 +87,12 @@ namespace Shop.Controllers
             if (ModelState.IsValid)
             {
                 db.Entry(employee).State = EntityState.Modified;
+                employee.Location = db.Locations.ToList().Find(loc => loc.ShopLocationID == employee.LocationID);
                 db.SaveChanges();
                 return RedirectToAction("Index");
             }
             ViewBag.UserID = new SelectList(db.Users, "Id", "Email", employee.UserID);
+            ViewBag.ShopLocationID = new SelectList(db.Locations, "ShopLocationID", "Name");
             return View("~/Views/Admin/Employee/Edit.cshtml", employee);
         }
 
