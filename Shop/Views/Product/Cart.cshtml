@@ -2,19 +2,47 @@
 <h3>Twój koszyk</h3>
 <div class="row">
     <div class="col-md-6">
+        <div class="row list-group-item-heading">
+            <div class="col-md-6" style="text-align: center;">
+                <b>PRODUKT</b>
+            </div>
+            <div class="col-md-4">
+                <b>ILOŚĆ</b>
+            </div>
+            <div class="col-md-2">
+                <b>CENA</b>
+            </div>
+        </div>
         <ul class="list-group">
-            @foreach (var item in Model.Products)
+            @foreach (KeyValuePair<Shop.Models.Product, int> pair in Model.Products)
             {
                 <li class="list-group-item">
-                    <span class="badge">@item.ActualPrice</span>
-                    @item.Name
+                    <div class="row">
+                        <a href="@Url.Action("Details", "Product", new { id = pair.Key.ProductID })">
+                            <div class="col-md-2">
+                                <img src="#" height="16px" width="16px" />
+                            </div>
+                            <div class="col-md-4">
+                                @pair.Key.Name
+                            </div>
+                        </a>
+                        <div class="col-md-4">
+                            <a href="@Url.Action("RemoveFromCart", "Product", new { productId = pair.Key.ProductID })"><span class="glyphicon glyphicon-minus"></span></a>
+                            <span>@pair.Value</span> 
+                            <a href="@Url.Action("AddAnotherCopy", "Product",  new { productId = pair.Key.ProductID })"><span class="glyphicon glyphicon-plus"></span></a>
+                        </div>
+                        <div class="col-md-2">
+                            <span class="badge">@(pair.Key.ActualPrice * pair.Value) zł</span>
+                        </div>
+                    </div>
                 </li>
             }
             <li class="list-group-item">
-                <span class="badge">@Model.Total</span>
+                <span class="badge">@Model.Total zł</span>
                 <b>RAZEM</b>
             </li>
         </ul>
+        <a href="@Url.Action("ClearCart")" class="btn btn-warning">Wyczyść</a>
         <a href="@Url.Action("AddOrder")" class="btn btn-primary pull-right">Kupuję</a>
     </div>
 </div>

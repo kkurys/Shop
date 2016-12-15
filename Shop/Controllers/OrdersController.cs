@@ -1,14 +1,11 @@
-﻿using System;
+﻿using Microsoft.AspNet.Identity;
+using Shop.Models;
+using System;
 using System.Collections.Generic;
-using System.Data;
 using System.Data.Entity;
 using System.Linq;
 using System.Net;
-using System.Web;
 using System.Web.Mvc;
-using Shop.Models;
-using Microsoft.AspNet.Identity;
-using Microsoft.AspNet.Identity.Owin;
 
 namespace Shop.Controllers
 {
@@ -38,7 +35,7 @@ namespace Shop.Controllers
             return View(order);
         }
 
-        
+
 
         // GET: Orders/Create
         public ActionResult Create()
@@ -66,7 +63,7 @@ namespace Shop.Controllers
         }
 
         [HttpGet]
-        public ActionResult Create(List<Product> products)
+        public ActionResult Create(Dictionary<Product, int> products)
         {
             var o = new Order();
             o.Date = DateTime.Now;
@@ -75,7 +72,7 @@ namespace Shop.Controllers
 
             db.Orders.Add(o);
             db.SaveChanges();
-            
+
             return RedirectToAction("Details", new { id = o.OrderID });
         }
 

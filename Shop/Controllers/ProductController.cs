@@ -183,24 +183,43 @@ namespace Shop.Controllers
         {
             if (Session["cart"] == null)
             {
-                var cart = new List<Product>();
-                cart.Add(product);
+                var cart = new Dictionary<Product, int>();
+                cart.Add(product, 1);
                 Session["cart"] = cart;
             }
             else
             {
-                List<Product> cart = Session["cart"] as List<Product>;
-                cart.Add(product);
+                var cart = Session["cart"] as Dictionary<Product, int>;
+                var _productInCart = cart.Keys.FirstOrDefault(prod => product.ProductID == prod.ProductID);
+                if (_productInCart != null)
+                {
+                    cart[_productInCart]++;
+                }
+                else
+                {
+                    cart.Add(product, 1);
+                }
+
             }
             return RedirectToAction("Details", new { id = product.ProductID });
         }
+        public ActionResult AddAnotherCopy(int productId)
+        {
+            var cart = Session["cart"] as Dictionary<Product, int>;
+            var _productInCart = cart.Keys.FirstOrDefault(prod => productId == prod.ProductID);
+            if (_productInCart != null)
+            {
+                cart[_productInCart]++;
+            }
+            return RedirectToAction("Cart");
+        }
         public ActionResult Cart()
         {
-            var viewModel = new CartViewModel(Session["cart"] as List<Product>);
+            var viewModel = new CartViewModel(Session["cart"] as Dictionary<Product, int>);
             viewModel.MenuCategories = allCats.getAllCategories(db);
             return View(viewModel);
         }
-        
+
         public ActionResult AddOrder()
         {
             var o = new Order();
@@ -208,7 +227,29 @@ namespace Shop.Controllers
             o.WasPaid = false;
             o.UserID = "1";
 
-            return RedirectToAction("Create", "Orders", new { products = Session["cart"] as List<Product> });
+            return RedirectToAction("Create", "Orders", new { products = Session["cart"] as Dictionary<Product, int> });
+        }
+        public ActionResult RemoveFromCart(int productId)
+        {
+            var cart = Session["cart"] as Dictionary<Product, int>;
+
+            Product p = cart.Keys.First(prod => prod.ProductID == productId);
+
+            cart[p]--;
+
+            if (cart[p] == 0)
+            {
+                cart.Remove(p);
+            }
+
+
+            return RedirectToAction("Cart");
+        }
+        public ActionResult ClearCart()
+        {
+            Session["cart"] = null;
+
+            return RedirectToAction("Cart");
         }
     }
 }

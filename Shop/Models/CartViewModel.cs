@@ -5,25 +5,27 @@ namespace Shop.Models
     public class CartViewModel : BaseViewModel
     {
         private double _totalSum = 0;
-        private List<Product> _products;
-        public CartViewModel(List<Product> cart)
+        private Dictionary<Product, int> _products;
+        public CartViewModel(Dictionary<Product, int> cart)
         {
             if (cart != null)
             {
                 _products = cart;
-                foreach (Product p in _products)
+                foreach (KeyValuePair<Product, int> pair in _products)
                 {
-                    _totalSum += double.Parse(p.ActualPrice.ToString());
+                    double productActualPrice = double.Parse(pair.Key.ActualPrice.ToString());
+
+                    _totalSum += productActualPrice * pair.Value;
                 }
             }
         }
-        public List<Product> Products
+        public Dictionary<Product, int> Products
         {
             get
             {
                 if (_products == null)
                 {
-                    return new List<Product>();
+                    return new Dictionary<Product, int>();
                 }
                 else
                 {
