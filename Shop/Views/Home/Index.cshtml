@@ -4,41 +4,79 @@
 @model Shop.Models.HomeViewModel
 
 <div class="jumbotron jumbotron-transparent">
-    @if (Model.News.Count == 0)
-    {
-        <div class="alert alert-danger" role="alert">Brak wiadomosci!</div>
+    <div class="row">
+        <div class="col-md-6">
+            @if (Model.News.Count == 0)
+            {
+                <div class="alert alert-danger" role="alert">Brak wiadomosci!</div>
 
-    }
-    else
-    {
-        <ul class="simple-list">
-            @foreach (var item in Model.News)
+            }
+            else
+            {
+                <h2 class="header">Aktualności</h2>
+                <ul class="simple-list">
+                    @foreach (var item in Model.News)
                 {
-                <li>
-                    <div class="row news-row">
-                        <div class="col-sm-4">
-                            @if (@item.ImgFilename != null)
-                            {
-                                <img src="@Url.Content(@item.ImgFilename)" class="img-responsive" alt="img">
-                            }
-                            else
-                            {
-                                <img src="http://placehold.it/1280X720" class="img-responsive">
-                            }
-                        </div>
-                        <div class="col-sm-8">
-                            <h3 class="title"><b>@item.Title</b></h3>
-                            <p>@item.Content</p>
+                        <li>
+                            <div class="row news-row">
+                                <div class="col-sm-4">
+                                    @if (@item.ImgFilename != null)
+                                    {
+                                        <img src="@Url.Content(@item.ImgFilename)" class="img-responsive" alt="img">
+                                    }
+                                    else
+                                    {
+                                        <img src="http://placehold.it/1280X720" class="img-responsive">
+                                    }
+                                </div>
+                                <div class="col-sm-8">
+                                    <h3 class="title"><b>@item.Title</b></h3>
+                                    <p class="news-content">@item.Content</p>
 
-                            <p class="text-muted">@item.CreationDate</p>
+                                    <p class="news-date">@item.CreationDate</p>
 
+                                </div>
+                            </div>
+                            <hr />
+                        </li>
+                    }
+                </ul>
+            }
+        </div>
+        <div class="col-md-6">
+          <div class="row">
+            <h2 class="header">Promocje dnia</h2>
+          </div>
+            <div class="row">
+                <div class="row carousel-holder">
+                    <div class="col-md-12">
+                        <div id="carousel-example-generic" class="carousel slide" data-ride="carousel">
+
+                            <div class="carousel-inner">
+                                <div class="item active">
+                                    <div class="test">
+                                        <span class="title">Najlepsza promocja</span><br /><br />
+                                        <span class="text">Nie kupuj nic a zaoszczędzisz tyle kasy ile miałeś zamiar wydać!!!</span>
+                                    </div>
+                                </div>
+                                <div class="item">
+                                    <div class="test">
+                                        <span class="title">2 za 1</span><br /><br />
+                                        <span class="text">Kup 2 karty SD firmy SanDisk a drugą otrzymasz za symboliczną złotówkę!</span>
+                                    </div>
+                                </div>
+                                <div class="item">
+                                    <div class="test">
+                                        <span class="title">Najlepsza promocja</span><br /><br />
+                                        <span class="text">Nie kupuj nic a zaoszczędzisz tyle kasy ile miałeś zamiar wydać!!!</span>
+                                    </div>
+                                </div>
+                            </div>
                         </div>
                     </div>
-                    <hr />
-                </li>
-            }
-        </ul>
-    }
+                </div>
+        </div>
 
+     </div>
 
-</div>
+    </div>

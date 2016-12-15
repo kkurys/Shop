@@ -21,12 +21,12 @@
             </li>
             <li>
 
-                @Html.ActionLink("Hello " + User.Identity.GetUserName() + "!", "Index", "Manage", routeValues: null, htmlAttributes: new { title = "Manage" })
+                @Html.ActionLink("Twoje konto", "Index", "Manage", routeValues: null, htmlAttributes: new { title = "Manage" })
             </li>
             @if (User.IsInRole("Admin"))
             {
                 <li>
-                @Html.ActionLink("Manage", "Index", "Admin")
+                @Html.ActionLink("Zarządzaj", "Index", "Admin")
                 </li>
 
             }

@@ -1,112 +1,146 @@
 ﻿/**/
 body {
-    padding-top: 50px;
-    padding-bottom: 20px;
-    width: 100%;
+	padding-top: 50px;
+	padding-bottom: 20px;
+	width: 100%;
 }
 
 /* Set padding to keep content from hitting the edges */
 .body-content {
-    padding-left: 15px;
-    padding-right: 15px;
+	padding-left: 15px;
+	padding-right: 15px;
 }
 
 /* Override the default bootstrap behavior where horizontal description lists 
    will truncate terms that are too long to fit in the left column 
 */
 .dl-horizontal dt {
-    white-space: normal;
+	white-space: normal;
 }
 
 /* Set width on the form input elements since they're 100% wide by default */
 input,
 select,
 textarea {
-    max-width: 280px;
+	max-width: 280px;
 }
 .tool{
-    height: 80px;
-    width: 210px;
-    padding: 10px;
-    float: left;
+	height: 80px;
+	width: 210px;
+	padding: 10px;
+	float: left;
 }
 
 .sideMenu{
-    text-align: center;
+	text-align: center;
 }
 
 .sideMenu a{
-    margin: 5px 0px;
+	margin: 5px 0px;
 }
 
 .mainMenu{
-    text-align: center;
-    padding: 15px;
-    margin: 0 auto;
-    left: 50%;
-    -webkit-transform: translate(-50%, 0);
-    transform: translate(-50%, 0);
+	text-align: center;
+	padding: 15px;
+	margin: 0 auto;
+	left: 50%;
+	-webkit-transform: translate(-50%, 0);
+	transform: translate(-50%, 0);
 }
-
+.mainMenu a {
+}
 .mainMenu ul{
-    z-index: 100 !important;
+	z-index: 100 !important;
 }
 
 .btn-long{
-    width: 100%;
+	width: 100%;
 }
 
 .btn-full{
-    width: 100%;
+	width: 100%;
 }
 
 .full-length{
-    width: 100%;
-    z-index: 1000;
+	width: 100%;
+	z-index: 1000;
 }
 
 .full-length li{
-    width: 100%;
+	width: 100%;
 }
 
 .glyphicon-white{
-    font-size: 25px;
-    text-align: center;
+	font-size: 25px;
+	text-align: center;
 
 }
 
 .clear-link{
-    text-decoration: none;
-    color: #999999;
+	text-decoration: none;
+	color: #999999;
 }
 
 .clear-link:hover{
-    color: #5e5e5e;
-    text-decoration: none;
+	color: #5e5e5e;
+	text-decoration: none;
 
 }
 
 .dropdown-menu{
-    z-index: 9999;
+	z-index: 9999;
 }
 
 .dropdown-menu li a:hover{
-    background-color: #5e5e5e;
+	background-color: #5e5e5e;
 }
 
 .simple-list{
-    list-style: none;
+	list-style: none;
 
 }
 
 .news-row{
-    padding: 10px;
-    background-color: #eef8ff;
-    border-radius: 5px;
+	padding: 5px;
+	background-color: #ffffff;
+	border-radius: 5px;
+	font-size: medium;
+	border-bottom: thin solid gray;
+}
+.news-date{
+	text-align: right;
+	margin-bottom: -0.5em;
+	color: gray;
+}
+.news-content {
+	margin-left: 5px;
+}
+.jumbotron-transparent{
+	background-color: transparent;
 
 }
-
-.jumbotron-transparent{
-    background-color: transparent;
-
+a.tiles{
+	color: none;
+	background-color: red;
+}
+.left{
+	float: left;
+}
+.test{
+	height: 180px;
+	width: 20em;
+	margin: auto;
+	padding: 10px;
+	text-align: center;
+	border-radius: 5px;
+	font-size: medium;
+	color: black;
+	border: white groove;
+}
+.text{
+	font-family: 'Roboto', sans-serif;
+}
+.header {
+	border-bottom: thick solid gray;
+	font-weight: bold;
 }
