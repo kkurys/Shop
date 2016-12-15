@@ -5,9 +5,12 @@
     ViewBag.Title = "Index";
 }
 
-<h2>Index</h2>
+<h2>Twoje zamówienia</h2>
 <table class="table">
     <tr>
+        <th>
+            @Html.DisplayNameFor(model => model.OrderID)
+        </th>
         <th>
             @Html.DisplayNameFor(model => model.User.Email)
         </th>
@@ -24,6 +27,9 @@
     <tr>
         @if (item.UserID == User.Identity.GetUserId())
         {
+            <td>
+                @Html.DisplayFor(modelItem => item.OrderID)
+            </td>
             <td>
                 @Html.DisplayFor(modelItem => item.User.Email)
             </td>

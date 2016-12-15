@@ -27,7 +27,18 @@
         </div>
     </div>
     <div class="col-md-2 sideMenu">
-        @Html.ActionLink("Dodaj do koszyka", "AddToCart", "Product", Model, new { @class = "btn btn-primary btn-long" })
+        @if (Model.Copies.Count(cop => cop.WasSold == false) < 1)
+        {
+            <button class="btn btn-danger btn-long">Niedostępny</button>
+        }
+        else
+        {
+            if (Model.Copies.Count(cop => cop.WasSold == false) < 5)
+            {
+                <span class="label label-warning">UWAGA! Ostatnie sztuki!</span>
+            }
+            @Html.ActionLink("Dodaj do koszyka", "AddToCart", "Product", Model, new { @class = "btn btn-success btn-long" })
+        }
 
         <a href="@Url.Action("")" class="btn btn-default btn-long">
             Powrót

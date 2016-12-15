@@ -27,12 +27,29 @@ namespace Shop.Controllers
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
-            Order order = db.Orders.Find(id);
-            if (order == null)
+            OrderViewModel details = new OrderViewModel();
+            details.Order = db.Orders.Find(id);
+            if (details.Order == null)
             {
                 return HttpNotFound();
             }
-            return View(order);
+
+            var cart = new Dictionary<Product, int>();
+            foreach (var copy in details.Order.Copies)
+            {
+                var _productInCart = cart.Keys.FirstOrDefault(prod => copy.ProductID == prod.ProductID);
+                if (_productInCart != null)
+                {
+                    cart[_productInCart]++;
+                }
+                else
+                {
+                    cart.Add(db.Products.Find(copy.ProductID), 1);
+                }
+            }
+            details.SetProducts(cart);
+
+            return View(details);
         }
 
 
@@ -47,33 +64,14 @@ namespace Shop.Controllers
         // POST: Orders/Create
         // To protect from overposting attacks, please enable the specific properties you want to bind to, for 
         // more details see http://go.microsoft.com/fwlink/?LinkId=317598.
-        [HttpPost]
-        [ValidateAntiForgeryToken]
+        [AcceptVerbs(HttpVerbs.Get)]
         public ActionResult Create([Bind(Include = "OrderID,Date,WasPaid,UserID")] Order order)
         {
-            if (ModelState.IsValid)
-            {
-                db.Orders.Add(order);
-                db.SaveChanges();
-                return RedirectToAction("Index");
-            }
-
-            ViewBag.UserID = new SelectList(db.ApplicationUsers, "Id", "Email", order.UserID);
-            return View(order);
-        }
-
-        [HttpGet]
-        public ActionResult Create(Dictionary<Product, int> products)
-        {
-            var o = new Order();
-            o.Date = DateTime.Now;
-            o.WasPaid = false;
-            o.UserID = User.Identity.GetUserId();
-
-            db.Orders.Add(o);
+            db.Orders.Add(order);
             db.SaveChanges();
-
-            return RedirectToAction("Details", new { id = o.OrderID });
+            
+            //ViewBag.UserID = new SelectList(db.ApplicationUsers, "Id", "Email", order.UserID);
+            return RedirectToAction("Details", "Orders", new { id = order.OrderID });
         }
 
         // GET: Orders/Edit/5
@@ -142,6 +140,14 @@ namespace Shop.Controllers
                 db.Dispose();
             }
             base.Dispose(disposing);
+        }
+
+        public ActionResult Pay(int? id)
+        {
+            db.Orders.Find(id).WasPaid = true;
+            db.SaveChanges();
+
+            return RedirectToAction("Details", new { id = id });
         }
     }
 }
