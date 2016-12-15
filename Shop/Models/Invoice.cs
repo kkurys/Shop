@@ -6,11 +6,16 @@ namespace Shop.Models
     public class Invoice
     {
         public int InvoiceID { get; set; }
+
         [Display(Name = "Zamówienie")]
         public int OrderID { get; set; }
+
         public int DeliveryDataID { get; set; }
+
         [Display(Name = "Data wystawienia")]
+        [DisplayFormat(DataFormatString = "{0:dd/MM/yyyy}")]
         public DateTime Date { get; set; }
+
         [Display(Name = "Wystawił pracownik")]
         public int EmployeeID { get; set; }
 

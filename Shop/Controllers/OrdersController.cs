@@ -149,5 +149,41 @@ namespace Shop.Controllers
 
             return RedirectToAction("Details", new { id = id });
         }
+
+        [HttpGet]
+        public ActionResult Invoice(int id)
+        {
+            Invoice invoice = new Invoice();
+            var empl = db.Employees.ToList();
+            Random rnd = new Random();
+            invoice.EmployeeID = empl[rnd.Next(0, empl.Count - 1)].EmployeeID;
+            invoice.Date = DateTime.Now.Date;
+            invoice.OrderID = id;
+            ViewBag.DeliveryDataID = new SelectList(db.DeliveryDatas.ToList().FindAll(delivery => User.Identity.GetUserId() == delivery.UserID), "DeliveryDataID", "Name");
+
+
+            return View(invoice);
+        }
+
+        [HttpPost]
+        public ActionResult Invoice(Invoice invoice)
+        {
+            invoice.Date = DateTime.Now.Date;
+            var empl = db.Employees.ToList();
+            Random rnd = new Random();
+            invoice.EmployeeID = empl[rnd.Next(0, empl.Count - 1)].EmployeeID;
+            db.Invoices.Add(invoice);
+            db.SaveChanges();
+
+            return RedirectToAction("Pay", new { id = invoice.OrderID });
+        }
+
+        [HttpGet]
+        public ActionResult InvoiceDetails(int id)
+        {
+            var invoice = db.Invoices.ToList().Find(inv => id == inv.OrderID);
+
+            return View(invoice);
+        }
     }
 }
