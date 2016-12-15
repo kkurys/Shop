@@ -241,3 +241,4 @@ ModelManifest.xml
 # FAKE - F# Make
 .fake/
 /Shop/Content/Images/News
+/Shop/Content/Images/Products
