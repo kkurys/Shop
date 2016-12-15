@@ -1,6 +1,7 @@
 ﻿@{
     ViewBag.Title = "Home Page";
 }
+@model Shop.Models.HomeViewModel
 
 <div class="jumbotron jumbotron-transparent">
     @if (Model.News.Count == 0)
@@ -16,7 +17,14 @@
                 <li>
                     <div class="row news-row">
                         <div class="col-sm-4">
-                            <a href="#" class=""><img src="http://placehold.it/1280X720" class="img-responsive"></a>
+                            @if (@item.ImgFilename != null)
+                            {
+                                <img src="@Url.Content(@item.ImgFilename)" class="img-responsive" alt="img">
+                            }
+                            else
+                            {
+                                <img src="http://placehold.it/1280X720" class="img-responsive">
+                            }
                         </div>
                         <div class="col-sm-8">
                             <h3 class="title">@item.Title</h3>
