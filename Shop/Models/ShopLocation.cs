@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
+using System.ComponentModel.DataAnnotations.Schema;
 
 namespace Shop.Models
 {
@@ -20,6 +21,14 @@ namespace Shop.Models
         public string City { get; set; }
         [Display(Name = "Ulica i numer lokalu")]
         public string FullAddress { get; set; }
+        [NotMapped]
+        public string Name
+        {
+            get
+            {
+                return City + " " + PostalCode;
+            }
+        }
         [Display(Name = "Kod pocztowy")]
         public string PostalCode { get; set; }
         public virtual ICollection<Employee> Employees { get; set; }
