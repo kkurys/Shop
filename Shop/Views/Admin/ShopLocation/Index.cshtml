@@ -7,23 +7,8 @@
 
 <h2>Sklepy</h2>
 
-<p>
-    @Html.ActionLink("Dodaj nowy", "Create")
-</p>
 <table class="table">
     <tr>
-        <th>
-            @Html.DisplayNameFor(model => model.OpeningHour)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.ClosingHour)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.Phone)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.EMail)
-        </th>
         <th>
             @Html.DisplayNameFor(model => model.City)
         </th>
@@ -54,5 +39,12 @@
         </td>
     </tr>
 }
-
+    <tr>
+        <td></td>
+        <td></td>
+        <td></td>
+        <td>
+            @Html.ActionLink("Dodaj nowy", "Create")
+        </td>
+    </tr>
 </table>

@@ -7,9 +7,6 @@
 
 <h2>Aktualności</h2>
 
-<p>
-    @Html.ActionLink("Dodaj nową", "Create")
-</p>
 <table class="table">
     <tr>
         <th>
@@ -42,7 +39,7 @@
             @Html.DisplayFor(modelItem => item.Content)
         </td>
         <td>
-            @Html.DisplayFor(modelItem => item.ImgFilename)
+            <img src="@Url.Content(item.ImgFilename)" height="64px" width="64px" />
         </td>
         <td>
             @Html.DisplayFor(modelItem => item.CreationDate)
@@ -54,5 +51,14 @@
         </td>
     </tr>
 }
-
+    <tr>
+        <td></td>
+        <td></td>
+        <td></td>
+        <td></td>
+        <td></td>
+        <td>
+            @Html.ActionLink("Dodaj nową", "Create")
+        </td>
+    </tr>
 </table>
