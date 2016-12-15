@@ -4390,6 +4390,7 @@ textarea.input-group-sm > .input-group-btn > .btn {
   background-color: #f8f8f8;
   border-color: #e7e7e7;
   border-bottom: solid black thin;
+  font-weight: bold;
 }
 
 .navbar-default .navbar-brand {
@@ -4432,6 +4433,7 @@ textarea.input-group-sm > .input-group-btn > .btn {
 
 .navbar-default .navbar-toggle {
   border-color: #dddddd;
+  font-weight: bold;
 }
 
 .navbar-default .navbar-toggle:hover,
@@ -5245,7 +5247,6 @@ a.thumbnail:focus {
 .media > .pull-right {
   margin-left: 10px;
 }
-
 .media-list {
   padding-left: 0;
   list-style: none;
