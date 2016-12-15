@@ -1,4 +1,5 @@
-﻿using Shop.Models;
+﻿using Microsoft.AspNet.Identity;
+using Shop.Models;
 using System;
 using System.Collections.Generic;
 using System.Data.Entity;
@@ -221,7 +222,11 @@ namespace Shop.Controllers
             var _productInCart = cart.Keys.FirstOrDefault(prod => productId == prod.ProductID);
             if (_productInCart != null)
             {
-                cart[_productInCart]++;
+                var availableCopies = db.Products.Find(productId).Copies.Count(cop => cop.WasSold == false);
+                if (cart[_productInCart] < availableCopies)
+                {
+                    cart[_productInCart]++;
+                }
             }
             return RedirectToAction("Cart");
         }
@@ -235,11 +240,38 @@ namespace Shop.Controllers
         public ActionResult AddOrder()
         {
             var o = new Order();
+            o.Copies = new List<Copy>();
+            var cart = Session["cart"] as Dictionary<Product, int>;
+            foreach (var product in cart.Keys)
+            {
+                var _productInCart = cart.Keys.FirstOrDefault(prod => product.ProductID == prod.ProductID);
+                int max = cart[_productInCart];
+                int current = 0;
+                while (current != max)
+                {
+                    var tmpList = db.Copies.ToList();
+                    for (int i = 0; i < tmpList.Count(); i++)
+                    {
+                        if (tmpList[i].WasSold == false)
+                        {
+                            o.Copies.Add(tmpList[i]);
+                            db.Copies.Find(tmpList[i].CopyID).WasSold = true;
+                            db.SaveChanges();
+                            current++;
+                            break;
+                        }
+                    }
+                }
+            }
+
             o.Date = DateTime.Now;
             o.WasPaid = false;
-            o.UserID = "1";
+            o.UserID = User.Identity.GetUserId();
 
-            return RedirectToAction("Create", "Orders", new { products = Session["cart"] as Dictionary<Product, int> });
+
+            db.Orders.Add(o);
+            db.SaveChanges();
+            return RedirectToAction("Details", "Orders", new { id = o.OrderID });
         }
         public ActionResult RemoveFromCart(int productId)
         {

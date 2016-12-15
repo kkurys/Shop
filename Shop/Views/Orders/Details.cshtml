@@ -1,56 +1,121 @@
 ﻿@using Microsoft.AspNet.Identity;
-@model Shop.Models.Order
+@model Shop.Models.OrderViewModel
 
 @{
     ViewBag.Title = "Details";
 }
 
-@if (Model.UserID == User.Identity.GetUserId())
-{
-    <h2>Details</h2>
+<div class="col-md-offset-1 col-md-10">
+    @if (Model.Order.UserID == User.Identity.GetUserId())
+    {
+        <h2>Details</h2>
 
-    <div>
-        <h4>Order</h4>
-        <hr />
-        <dl class="dl-horizontal">
-            <dt>
-                @Html.DisplayNameFor(model => model.User.Email)
-            </dt>
+        <div>
+            <h4>Order</h4>
+            <hr />
 
-            <dd>
-                @Html.DisplayFor(model => model.User.Email)
-            </dd>
+            <dl class="dl-horizontal">
+                <dt>
+                    @Html.DisplayNameFor(model => model.Order.OrderID)
+                </dt>
 
-            <dt>
-                @Html.DisplayNameFor(model => model.Date)
-            </dt>
+                <dd>
+                    @Html.DisplayFor(model => model.Order.OrderID)
+                </dd>
+                <dt>
+                    @Html.DisplayNameFor(model => model.Order.User.Email)
+                </dt>
 
-            <dd>
-                @Html.DisplayFor(model => model.Date)
-            </dd>
+                <dd>
+                    @Html.DisplayFor(model => model.Order.User.Email)
+                </dd>
 
-        </dl>
-        @if (Model.WasPaid == false)
-        {
-            <div class="alert alert-danger" role="alert">
-                <a href="#" class="alert-link">Nie zapłacono</a>
+                <dt>
+                    @Html.DisplayNameFor(model => model.Order.Date)
+                </dt>
+
+                <dd>
+                    @Html.DisplayFor(model => model.Order.Date)
+                </dd>
+
+            </dl>
+
+            <div class="row list-group-item-heading">
+                <div class="col-md-6" style="text-align: center;">
+                    <b>PRODUKT</b>
+                </div>
+                <div class="col-md-4">
+                    <b>ILOŚĆ</b>
+                </div>
+                <div class="col-md-2">
+                    <b>CENA</b>
+                </div>
             </div>
-        }
-        else
-        {
-            <div class="alert alert-success" role="alert">
-                <a href="#" class="alert-link">Zapłacono</a>
-            </div>
-        }
-    </div>
-    <p>
-        <a href="@Url.Action("Index", "Orders")" class="btn btn-primary">Powrót</a>
-    </p>
-}
-else
-{
-    <div class="alert alert-danger" role="alert">
-        <a href="#" class="alert-link">Brak dostępu do tego zamówienia.</a>
-    </div>
-    <a href="@Url.Action("Index", "Orders")" class="btn btn-primary">Zamówienia</a>
-}
+            <ul class="list-group">
+                @foreach (KeyValuePair<Shop.Models.Product, int> pair in Model.Products)
+                {
+                    <li class="list-group-item">
+                        <div class="row">
+                            <a href="@Url.Action("Details", "Product", new { id = pair.Key.ProductID })">
+                                <div class="col-md-2">
+                                    <img src="#" height="16px" width="16px" />
+                                </div>
+                                <div class="col-md-4">
+                                    @pair.Key.Name
+                                </div>
+                            </a>
+                            <div class="col-md-4">
+                                <span>@pair.Value</span>
+                            </div>
+                            <div class="col-md-2">
+                                <span class="badge">@(pair.Key.ActualPrice * pair.Value) zł</span>
+                            </div>
+                        </div>
+                    </li>
+                }
+                <li class="list-group-item">
+                    <div class="row">
+                        <div class="col-md-2">
+                        </div>
+                        <div class="col-md-4">
+                            <b>RAZEM</b>
+                        </div>
+                        <div class="col-md-4">
+                        </div>
+                        <div class="col-md-2">
+                            <span class="badge">@Model.Total zł</span>
+                        </div>
+                    </div>
+                </li>
+            </ul>
+
+            @if (Model.Order.WasPaid == false)
+            {
+                <div class="alert alert-danger" role="alert">
+                    <a href="#" class="alert-link">Nie zapłacono</a>
+                </div>
+            }
+            else
+            {
+                <div class="alert alert-success" role="alert">
+                    <a href="#" class="alert-link">Zapłacono</a>
+                </div>
+            }
+        </div>
+        <p>
+            <a href="@Url.Action("Index", "Orders")" class="btn btn-primary">Powrót</a>
+            @if (Model.Order.WasPaid == false)
+            {
+                <a href="@Url.Action("Pay", "Orders", new { id = Model.Order.OrderID })" class="btn btn-success pull-right">Zapłać</a>
+            }
+        </p>
+    }
+    else
+    {
+        <div class="alert alert-danger" role="alert">
+            <a href="#" class="alert-link">Brak dostępu do tego zamówienia.</a>
+        </div>
+        <a href="@Url.Action("Index", "Orders")" class="btn btn-primary">Zamówienia</a>
+    }
+
+</div>
