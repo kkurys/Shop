@@ -8,7 +8,7 @@
 <h2>Aktualności</h2>
 
 <p>
-    @Html.ActionLink("Create New", "Create")
+    @Html.ActionLink("Dodaj nową", "Create")
 </p>
 <table class="table">
     <tr>
@@ -48,9 +48,9 @@
             @Html.DisplayFor(modelItem => item.CreationDate)
         </td>
         <td>
-            @Html.ActionLink("Edit", "Edit", new { id=item.NewsID }) |
-            @Html.ActionLink("Details", "Details", new { id=item.NewsID }) |
-            @Html.ActionLink("Delete", "Delete", new { id=item.NewsID })
+            @Html.ActionLink("Edytuj", "Edit", new { id=item.NewsID }) |
+            @Html.ActionLink("Szczegóły", "Details", new { id=item.NewsID }) |
+            @Html.ActionLink("Usuń", "Delete", new { id=item.NewsID })
         </td>
     </tr>
 }

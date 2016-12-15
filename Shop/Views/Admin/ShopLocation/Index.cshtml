@@ -5,10 +5,10 @@
     Layout = "~/Views/Admin/_AdminLayout.cshtml";
 }
 
-<h2>Index</h2>
+<h2>Sklepy</h2>
 
 <p>
-    @Html.ActionLink("Create New", "Create")
+    @Html.ActionLink("Dodaj nowy", "Create")
 </p>
 <table class="table">
     <tr>
@@ -60,9 +60,9 @@
             @Html.DisplayFor(modelItem => item.PostalCode)
         </td>
         <td>
-            @Html.ActionLink("Edit", "Edit", new { id=item.ShopLocationID }) |
-            @Html.ActionLink("Details", "Details", new { id=item.ShopLocationID }) |
-            @Html.ActionLink("Delete", "Delete", new { id=item.ShopLocationID })
+            @Html.ActionLink("Edytuj", "Edit", new { id=item.ShopLocationID }) |
+            @Html.ActionLink("Szczegóły", "Details", new { id=item.ShopLocationID }) |
+            @Html.ActionLink("Usuń", "Delete", new { id=item.ShopLocationID })
         </td>
     </tr>
 }
