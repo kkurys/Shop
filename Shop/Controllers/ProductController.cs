@@ -4,6 +4,7 @@ using System.Collections.Generic;
 using System.Data.Entity;
 using System.Linq;
 using System.Net;
+using System.Web;
 using System.Web.Mvc;
 
 namespace Shop.Controllers
@@ -97,6 +98,17 @@ namespace Shop.Controllers
             {
                 db.Products.Add(product);
                 db.SaveChanges();
+                for (int i = 0; i < Request.Files.Count; i++)
+                {
+                    HttpPostedFileBase img = Request.Files[i];
+                    img.SaveAs(HttpContext.Server.MapPath("~/Content/Images/Products/")
+                             + img.FileName);
+                    ProductImage _productImage = new ProductImage();
+                    _productImage.Product = product;
+                    _productImage.FileName = "~/Content/Images/Products/" + img.FileName;
+                    db.ProductImages.Add(_productImage);
+                    db.SaveChanges();
+                }
                 return RedirectToAction("Index");
             }
 
