@@ -3,27 +3,47 @@
 }
 
 @section menu{
-    <div class="btn-group mainMenu" role="group" aria-label="...">
-        @foreach (var category in Model.MenuCategories)
-        {
-            if (category.Subcategories.Count == 0)
-            {
-                <a href="#" type="button" class="btn btn-default">@category.Category.Name</a>
-            }
-            else
-            {
-                <div class="btn-group" role="group">
-                    <button type="button" class="btn btn-default btn-full dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">@category.Category.Name</button>
+    <div class="row">
+        <div class="col-md-offset-1 col-md-10">
+            <nav class="navbar navbar-inverse">
+                <div class="container-fluid">
+                    <!-- Brand and toggle get grouped for better mobile display -->
+                    <div class="navbar-header">
+                        <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1" aria-expanded="false">
+                            <span class="sr-only">Toggle navigation</span>
+                            <span class="icon-bar"></span>
+                            <span class="icon-bar"></span>
+                            <span class="icon-bar"></span>
+                        </button>
+                    </div>
 
-                    <ul class="dropdown-menu">
-                        @foreach (var subcategory in category.Subcategories)
-                        {
-                            <li><a href="@Url.Action("Index", "Product", new { category = @subcategory.Name })">@subcategory.Name</a></li>
-                        }
-                    </ul>
-                </div>
-            }
-        }
+                    <!-- Collect the nav links, forms, and other content for toggling -->
+                    <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
+                        <ul class="nav navbar-nav">
+                            @foreach (var category in Model.MenuCategories)
+                            {
+                                if (category.Subcategories.Count == 0)
+                                {
+                                    <li><a href="#" type="button" class="btn btn-default">@category.Category.Name</a></li>
+                                }
+                                else
+                                {
+                                    <li class="dropdown">
+                                        <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">@category.Category.Name <span class="caret"></span></a>
+                                        <ul class="dropdown-menu">
+                                            @foreach (var subcategory in category.Subcategories)
+                                            {
+                                                <li><a href="@Url.Action("Index", "Product", new { category = @subcategory.Name })">@subcategory.Name</a></li>
+                                            }
+                                        </ul>
+                                    </li>
+                                }
+                            }
+                        </ul>
+                    </div><!-- /.navbar-collapse -->
+                </div><!-- /.container-fluid -->
+            </nav>
+        </div>
     </div>
 }
 
