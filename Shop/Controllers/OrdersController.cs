@@ -159,7 +159,7 @@ namespace Shop.Controllers
             invoice.EmployeeID = empl[rnd.Next(0, empl.Count - 1)].EmployeeID;
             invoice.Date = DateTime.Now.Date;
             invoice.OrderID = id;
-            ViewBag.DeliveryDataID = new SelectList(db.DeliveryDatas.ToList().FindAll(delivery => User.Identity.GetUserId() == delivery.UserID), "DeliveryDataID", "Name");
+            ViewBag.DeliveryDataID = new SelectList(db.DeliveryDatas.ToList().FindAll(delivery => User.Identity.GetUserId() == delivery.UserID), "DeliveryDataID", "FullAddress");
 
 
             return View(invoice);

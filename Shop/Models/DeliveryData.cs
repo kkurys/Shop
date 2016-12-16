@@ -4,6 +4,7 @@ namespace Shop.Models
 {
     public class DeliveryData
     {
+        [Display(Name = "Dane dostawy")]
         public int DeliveryDataID { get; set; }
         public string UserID { get; set; }
         [Display(Name = "Imię")]

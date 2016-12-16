@@ -51,16 +51,8 @@
             @Html.DisplayFor(model => model.Employee.Name) @Html.DisplayFor(model => model.Employee.Surname)
         </dd>
 
-        <dt>
-            @Html.DisplayName("Kupujący")
-        </dt>
-
-        <dd>
-            @Model.Order.User.ToString()
-        </dd>
-
     </dl>
 </div>
 <p>
-    @Html.ActionLink("Back to List", "Index")
+    <a href="@Url.Action("Details", "Orders", new { id = Model.OrderID })" class="btn btn-primary">Powrót</a>
 </p>
