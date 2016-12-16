@@ -1,6 +1,4 @@
 ﻿using Shop.Models;
-using System;
-using System.Collections.Generic;
 using System.Linq;
 using System.Web.Mvc;
 
@@ -13,11 +11,12 @@ namespace Shop.Controllers
 
         public ActionResult Index()
         {
-
+            var news = db.News.ToList();
+            news.Reverse();
             return View(new HomeViewModel()
             {
                 Categories = db.Categories.ToList(),
-                News = db.News.ToList(),
+                News = news,
 
 
                 MenuCategories = allCats.getAllCategories(db)

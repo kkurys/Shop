@@ -5,7 +5,6 @@ using System.Linq;
 using System.Net;
 using System.Web;
 using System.Web.Mvc;
-using System.Web.Security;
 
 namespace Shop.Controllers
 {
@@ -58,14 +57,7 @@ namespace Shop.Controllers
                                       + file.FileName);
                     news.ImgFilename = "~/Content/Images/News/" + file.FileName;
                 }
-                news.CreationDate = DateTime.Now.Date;
-                try
-                {
-                    news.EmployeeID = db.Employees.ToList().Find(emp => emp.UserID == Membership.GetUser().ProviderUserKey.ToString()).EmployeeID;
-                }
-                catch
-                {
-                }
+                news.CreationDate = DateTime.Now;
                 db.News.Add(news);
                 db.SaveChanges();
                 return RedirectToAction("Index");
