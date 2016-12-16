@@ -5,7 +5,7 @@
 @if (User.IsInRole("Admin"))
 {
     <div class="col-md-3">
-        <div class="list-group">
+        <div class="list-group" style="margin-top: 25px">
             @Html.ActionLink("Aktualności", "News", "Admin", routeValues: null, htmlAttributes: new { @class = "list-group-item" })
             @Html.ActionLink("Kategorie produktów", "Category", "Admin", routeValues: null, htmlAttributes: new { @class = "list-group-item" })
             @Html.ActionLink("Producenci", "Manufacturer", "Admin", routeValues: null, htmlAttributes: new { @class = "list-group-item" })

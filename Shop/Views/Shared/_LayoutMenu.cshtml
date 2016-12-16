@@ -5,7 +5,7 @@
 @section menu{
     <div class="row">
         <div class="col-md-offset-1 col-md-10">
-            <nav class="navbar navbar-inverse">
+            <nav class="navbar navbar-inverse navbar-grey">
                 <div class="container-fluid">
                     <!-- Brand and toggle get grouped for better mobile display -->
                     <div class="navbar-header">
@@ -24,12 +24,12 @@
                             {
                                 if (category.Subcategories.Count == 0)
                                 {
-                                    <li><a href="#" type="button" class="btn btn-default">@category.Category.Name</a></li>
+                                    <li><a href="#" style="color: white">@category.Category.Name</a></li>
                                 }
                                 else
                                 {
                                     <li class="dropdown">
-                                        <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">@category.Category.Name <span class="caret"></span></a>
+                                        <a href="#" class="dropdown-toggle"  style="color: white" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">@category.Category.Name <span class="caret"></span></a>
                                         <ul class="dropdown-menu">
                                             @foreach (var subcategory in category.Subcategories)
                                             {

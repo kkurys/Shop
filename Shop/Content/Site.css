@@ -143,3 +143,12 @@ a.tiles{
 	border-bottom: thick solid gray;
 	font-weight: bold;
 }
+
+.navbar-grey{
+	background-color: #808080;
+    color: red;
+}
+
+.white{
+    color: white;
+}
