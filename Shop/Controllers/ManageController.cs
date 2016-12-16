@@ -71,7 +71,7 @@ namespace Shop.Controllers
                 Logins = await UserManager.GetLoginsAsync(userId),
                 BrowserRemembered = await AuthenticationManager.TwoFactorBrowserRememberedAsync(userId),
                 EMail = UserManager.GetEmail(userId),
-                DeliveryDatas = db.DeliveryDatas.ToList()
+                DeliveryDatas = db.DeliveryDatas.ToList().FindAll(_deliveryData => _deliveryData.UserID == User.Identity.GetUserId())
             };
             return View(model);
         }

@@ -55,7 +55,8 @@ namespace Shop.Controllers
         }
 
         // GET: Product
-        [Authorize(Roles = "Admin")]
+        [Authorize(Roles = "Admin, Employee")]
+
         public ActionResult AdminIndex()
         {
             var products = db.Products.Include(p => p.Category).Include(p => p.Manufacturer);
@@ -63,7 +64,8 @@ namespace Shop.Controllers
         }
 
         // GET: Product/Details/5
-        [Authorize(Roles = "Admin")]
+        [Authorize(Roles = "Admin, Employee")]
+
         public ActionResult AdminDetails(int? id)
         {
             if (id == null)
@@ -79,7 +81,8 @@ namespace Shop.Controllers
         }
 
         // GET: Product/Create
-        [Authorize(Roles = "Admin")]
+        [Authorize(Roles = "Admin, Employee")]
+
         public ActionResult Create()
         {
             ViewBag.CategoryID = new SelectList(db.Categories, "CategoryID", "Name");
@@ -91,13 +94,15 @@ namespace Shop.Controllers
         // To protect from overposting attacks, please enable the specific properties you want to bind to, for 
         // more details see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
-        [Authorize(Roles = "Admin")]
+        [Authorize(Roles = "Admin, Employee")]
+
         [ValidateAntiForgeryToken]
         public ActionResult Create([Bind(Include = "ProductID,Name,CategoryID,Description,ShortDescription,PriceNetto,VatPercent,ActualPrice,ManufacturerID")] Product product)
         {
             if (ModelState.IsValid)
             {
                 db.Products.Add(product);
+                product.ActualPrice = product.PriceNetto + product.VatPercent * product.PriceNetto / 100;
                 db.SaveChanges();
                 for (int i = 0; i < Request.Files.Count; i++)
                 {
@@ -110,7 +115,7 @@ namespace Shop.Controllers
                     db.ProductImages.Add(_productImage);
                     db.SaveChanges();
                 }
-                return RedirectToAction("Index");
+                return RedirectToAction("AdminIndex");
             }
 
             ViewBag.CategoryID = new SelectList(db.Categories, "CategoryID", "Name", product.CategoryID);
@@ -119,7 +124,8 @@ namespace Shop.Controllers
         }
 
         // GET: Product/Edit/5
-        [Authorize(Roles = "Admin")]
+        [Authorize(Roles = "Admin, Employee")]
+
         public ActionResult Edit(int? id)
         {
             if (id == null)
@@ -140,7 +146,8 @@ namespace Shop.Controllers
         // To protect from overposting attacks, please enable the specific properties you want to bind to, for 
         // more details see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
-        [Authorize(Roles = "Admin")]
+        [Authorize(Roles = "Admin, Employee")]
+
         [ValidateAntiForgeryToken]
         public ActionResult Edit([Bind(Include = "ProductID,Name,CategoryID,Description,ShortDescription,PriceNetto,VatPercent,ActualPrice,ManufacturerID")] Product product)
         {
@@ -148,7 +155,7 @@ namespace Shop.Controllers
             {
                 db.Entry(product).State = EntityState.Modified;
                 db.SaveChanges();
-                return RedirectToAction("Index");
+                return RedirectToAction("AdminIndex");
             }
             ViewBag.CategoryID = new SelectList(db.Categories, "CategoryID", "Name", product.CategoryID);
             ViewBag.ManufacturerID = new SelectList(db.Manufacturers, "ManufacturerID", "Name", product.ManufacturerID);
@@ -156,7 +163,8 @@ namespace Shop.Controllers
         }
 
         // GET: Product/Delete/5
-        [Authorize(Roles = "Admin")]
+        [Authorize(Roles = "Admin, Employee")]
+
         public ActionResult Delete(int? id)
         {
             if (id == null)
@@ -173,14 +181,15 @@ namespace Shop.Controllers
 
         // POST: Product/Delete/5
         [HttpPost, ActionName("Delete")]
-        [Authorize(Roles = "Admin")]
+        [Authorize(Roles = "Admin, Employee")]
+
         [ValidateAntiForgeryToken]
         public ActionResult DeleteConfirmed(int id)
         {
             Product product = db.Products.Find(id);
             db.Products.Remove(product);
             db.SaveChanges();
-            return RedirectToAction("Index");
+            return RedirectToAction("AdminIndex");
         }
 
         protected override void Dispose(bool disposing)
@@ -271,6 +280,7 @@ namespace Shop.Controllers
 
             db.Orders.Add(o);
             db.SaveChanges();
+            Session["cart"] = null;
             return RedirectToAction("Details", "Orders", new { id = o.OrderID });
         }
         public ActionResult RemoveFromCart(int productId)

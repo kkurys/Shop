@@ -13,9 +13,9 @@
             {
                 <div class="col-sm-4 col-lg-4 col-md-4">
                     <div class="thumbnail" style="margin-bottom: 20px;">
-                        <img src="http://placehold.it/320x150" alt="">
+                        <img src="@Url.Content(item.Images.First().FileName)" alt="">
                         <div class="caption">
-                            <h4 class="pull-right">@item.ActualPrice</h4>
+                            <h4 class="pull-right">@(item.ActualPrice) PLN</h4>
                             <h4>
                                 <a href="@Url.Action("Details", "Product", new { id = item.ProductID })">@item.Manufacturer.Name @item.Name</a>
                             </h4>
@@ -38,9 +38,9 @@ else
                 {
                     <div class="col-sm-4 col-lg-4 col-md-4">
                         <div class="thumbnail" style="margin-bottom: 20px;">
-                            <img src="http://placehold.it/320x150" alt="">
+                            <img src="@Url.Content(item.Images.First().FileName)" alt="">
                             <div class="caption">
-                                <h4 class="pull-right">@item.ActualPrice</h4>
+                                <h4 class="pull-right">@(item.ActualPrice) PLN</h4>
                                 <h4>
                                     <a href="@Url.Action("Details", "Product", new { id = item.ProductID })">@item.Manufacturer.Name @item.Name</a>
                                 </h4>

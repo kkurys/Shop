@@ -1,4 +1,5 @@
 ﻿using Shop.Models;
+using System;
 using System.Data.Entity;
 using System.Linq;
 using System.Net;
@@ -47,6 +48,8 @@ namespace Shop.Controllers
         {
             if (ModelState.IsValid)
             {
+                shopLocation.OpeningHour = new DateTime(1990, 1, 1, 8, 0, 0);
+                shopLocation.ClosingHour = new DateTime(1990, 1, 1, 18, 0, 0);
                 db.Locations.Add(shopLocation);
                 db.SaveChanges();
                 return RedirectToAction("Index");

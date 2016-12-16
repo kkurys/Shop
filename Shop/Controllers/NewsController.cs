@@ -8,7 +8,8 @@ using System.Web.Mvc;
 
 namespace Shop.Controllers
 {
-    [Authorize(Roles = "Admin")]
+    [Authorize(Roles = "Admin, Employee")]
+
     public class NewsController : Controller
     {
         private ApplicationDbContext db = new ApplicationDbContext();

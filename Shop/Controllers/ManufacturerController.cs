@@ -6,6 +6,8 @@ using System.Web.Mvc;
 
 namespace Shop.Controllers
 {
+    [Authorize(Roles = "Admin, Employee")]
+
     public class ManufacturerController : Controller
     {
         private ApplicationDbContext db = new ApplicationDbContext();

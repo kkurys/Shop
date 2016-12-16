@@ -16,7 +16,7 @@
         </dt>
 
         <dd>
-            @Html.DisplayFor(model => model.OpeningHour)
+            @(String.Format("{0:HH:mm}", Model.OpeningHour))
         </dd>
 
         <dt>
@@ -24,7 +24,7 @@
         </dt>
 
         <dd>
-            @Html.DisplayFor(model => model.ClosingHour)
+            @(String.Format("{0:HH:mm}", Model.ClosingHour))
         </dd>
 
         <dt>

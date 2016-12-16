@@ -4,7 +4,6 @@
     ViewBag.Title = "Create";
     Layout = "~/Views/Admin/_AdminLayout.cshtml";
 }
-
 <h2>Dodaj nowy sklep</h2>
 
 @using (Html.BeginForm()) 
@@ -15,22 +14,6 @@
         <h4>Sklep</h4>
         <hr />
         @Html.ValidationSummary(true, "", new { @class = "text-danger" })
-        <div class="form-group">
-            @Html.LabelFor(model => model.OpeningHour, htmlAttributes: new { @class = "control-label col-md-2" })
-            <div class="col-md-10">
-                @Html.EditorFor(model => model.OpeningHour, new { htmlAttributes = new { @class = "form-control" } })
-                @Html.ValidationMessageFor(model => model.OpeningHour, "", new { @class = "text-danger" })
-            </div>
-        </div>
-
-        <div class="form-group">
-            @Html.LabelFor(model => model.ClosingHour, htmlAttributes: new { @class = "control-label col-md-2" })
-            <div class="col-md-10">
-                @Html.EditorFor(model => model.ClosingHour, new { htmlAttributes = new { @class = "form-control" } })
-                @Html.ValidationMessageFor(model => model.ClosingHour, "", new { @class = "text-danger" })
-            </div>
-        </div>
-
         <div class="form-group">
             @Html.LabelFor(model => model.Phone, htmlAttributes: new { @class = "control-label col-md-2" })
             <div class="col-md-10">
@@ -78,7 +61,6 @@
         </div>
     </div>
 }
-
 <div>
     @Html.ActionLink("Wróć", "Index")
 </div>

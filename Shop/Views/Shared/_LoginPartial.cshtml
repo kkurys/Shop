@@ -8,13 +8,26 @@
         <ul class="nav navbar-nav navbar-right">
             <li>
                 <div class="pull-right">
-                    <a href="@Url.Action("Cart", "Product")"  class="clear-link">
+                    <a href="@Url.Action("Cart", "Product")" class="clear-link">
                         <div class="full-length" style="text-align: center">
                             <span class="glyphicon glyphicon-white glyphicon-shopping-cart" aria-hidden="true"></span>
                         </div>
                         <div>
+                            @if (Session["cart"] != null)
+                            {
+                                var cart = Session["cart"] as Dictionary<Shop.Models.Product, int>;
+                                double sum = 0.0;
+                                foreach (KeyValuePair<Shop.Models.Product, int> pair in cart)
+                                {
+                                    sum += pair.Value;
+                                }
+                                <span>Twój koszyk (@sum) </span>
+                            }
+                            else
+                            {
+                                <span>Twój koszyk</span>
+                            }
 
-                            <span>Twój koszyk</span>
                         </div>
                     </a>
                 </div>
@@ -23,10 +36,10 @@
 
                 @Html.ActionLink("Twoje konto", "Index", "Manage", routeValues: null, htmlAttributes: new { title = "Manage" })
             </li>
-            @if (User.IsInRole("Admin"))
+            @if (User.IsInRole("Admin") || User.IsInRole("Employee"))
             {
                 <li>
-                @Html.ActionLink("Zarządzaj", "Index", "Admin")
+                    @Html.ActionLink("Zarządzaj", "Index", "Admin")
                 </li>
 
             }

@@ -37,7 +37,7 @@ namespace Shop.Controllers
         public ActionResult Create()
         {
             ViewBag.UserID = new SelectList(db.Users, "Id", "Email");
-            ViewBag.ShopLocationID = new SelectList(db.Locations, "ShopLocationID", "Name");
+            ViewBag.LocationID = new SelectList(db.Locations, "ShopLocationID", "Name");
             return View("~/Views/Admin/Employee/Create.cshtml");
         }
 
@@ -50,6 +50,9 @@ namespace Shop.Controllers
         {
             if (ModelState.IsValid)
             {
+                IdentityManager im = new IdentityManager();
+                im.AddUserToRole(employee.UserID, "Employee");
+                employee.Location = db.Locations.ToList().Find(loc => loc.ShopLocationID == employee.LocationID);
                 db.Employees.Add(employee);
                 db.SaveChanges();
                 return RedirectToAction("Index");

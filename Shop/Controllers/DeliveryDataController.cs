@@ -1,4 +1,5 @@
-﻿using Shop.Models;
+﻿using Microsoft.AspNet.Identity;
+using Shop.Models;
 using System.Data.Entity;
 using System.Net;
 using System.Web.Mvc;
@@ -38,6 +39,7 @@ namespace Shop.Controllers
         {
             if (ModelState.IsValid)
             {
+                deliveryData.UserID = User.Identity.GetUserId();
                 db.DeliveryDatas.Add(deliveryData);
                 db.SaveChanges();
                 return RedirectToAction("Index", "Manage");

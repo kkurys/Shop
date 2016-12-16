@@ -7,7 +7,21 @@
 <div class="row">
     <div class="col-md-offset-1 col-md-8">
         <div class="thumbnail">
-            <img class="img-responsive" src="http://placehold.it/800x300" alt="" width="100%" id="BigPhoto">
+            <div id="carousel-example-generic" class="carousel slide" data-ride="carousel">
+
+                <div class="carousel-inner">
+                    <div class="item active">
+                        <img class="img-responsive" src="@Url.Content(Model.Images.First().FileName)">
+                    </div>
+                    @foreach (var item in Model.Images)
+                    {
+                        <div class="item">
+                            <img class="img-responsive" src="@Url.Content(@item.FileName)" />
+                        </div>
+                    }
+                </div>
+            </div>
+
             <div class="caption-full">
                 <h5>
                     <i>
@@ -24,17 +38,7 @@
                 </h4>
                 <p>@Model.Description</p>
             </div>
-            <div class="row">
-                @foreach (var item in Model.Images)
-                {
-                    <div class="col-xs-6 col-md-3">
-                        <a href="#" class="thumbnail">
-                            <img src="@Url.Content(@item.FileName)" alt="..." onclick=function() { $("#BigPhoto").attr("src", $(this).attr("src")); }
- />
-                        </a>
-                    </div>
-                }
-            </div>
+
         </div>
     </div>
     <div class="col-md-2 sideMenu">
