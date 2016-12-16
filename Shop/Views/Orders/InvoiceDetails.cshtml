@@ -1,13 +1,14 @@
-﻿@model Shop.Models.Invoice
+﻿@using Microsoft.AspNet.Identity;
+@model Shop.Models.Invoice
 
 @{
     ViewBag.Title = "InvoiceDetails";
 }
 
-<h2>InvoiceDetails</h2>
+<h2>Faktura zamówienia nr @Model.OrderID</h2>
 
 <div>
-    <h4>Invoice</h4>
+    <h4>Dane</h4>
     <hr />
     <dl class="dl-horizontal">
         <dt>
@@ -42,9 +43,24 @@
             @Html.DisplayFor(model => model.Date)
         </dd>
 
+        <dt>
+            @Html.DisplayName("Wystawiający")
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Employee.Name) @Html.DisplayFor(model => model.Employee.Surname)
+        </dd>
+
+        <dt>
+            @Html.DisplayName("Kupujący")
+        </dt>
+
+        <dd>
+            @Model.Order.User.ToString()
+        </dd>
+
     </dl>
 </div>
 <p>
-    @Html.ActionLink("Edit", "Edit", new { id = Model.InvoiceID }) |
     @Html.ActionLink("Back to List", "Index")
 </p>

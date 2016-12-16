@@ -105,7 +105,6 @@ textarea {
 	background-color: #ffffff;
 	border-radius: 5px;
 	font-size: medium;
-	border-bottom: thin solid gray;
 }
 .news-date{
 	text-align: right;
@@ -143,5 +142,4 @@ a.tiles{
 .header {
 	border-bottom: thick solid gray;
 	font-weight: bold;
-
 }
